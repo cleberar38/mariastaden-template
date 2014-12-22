@@ -1991,7 +1991,15 @@ define([
                 value = query(".checkboxInput:checked", currentField).length;
                 featureData.attributes[key] = value;
             });
-            featureData.geometry = {};
+            
+	        featureDataRequestLayerURL = "//services.arcgis.com/sH96KgSw0uy6vpvJ/arcgis/rest/services/CleberMapService/FeatureServer/0"; 
+	
+	        var featureLayer = new esri.layers.FeatureLayer(featureDataRequestLayerURL, {  
+		        mode: esri.layers.FeatureLayer.MODE_ONDEMAND,  
+		        infoTemplate: this._formLayer.infoTemplate,  
+		        outFields: ["*"]  
+	        });  
+           
             featureData.geometry = new Point(Number(this.addressGeometry.x), Number(this.addressGeometry.y), this.map.spatialReference);
             //code for apply-edits
             this._formLayer.applyEdits([featureData], null, null, lang.hitch(this, function (addResults) {
@@ -2003,7 +2011,10 @@ define([
                         });
                     }
                     // remove graphic
-                    this._clearSubmissionGraphic();
+                    //this._clearSubmissionGraphic();
+                    
+                    this.map.addLayers([featureLayer]);
+                    
                     // reset form
                     this._clearFormFields();
                     // reset to default extent
