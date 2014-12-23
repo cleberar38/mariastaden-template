@@ -55,7 +55,11 @@ define({
  Not_Working_bus_desc (type: esriFieldTypeString, alias: Not_Working_bus_desc, SQL Type: sqlTypeOther, length: 50, nullable: true, editable: true)    
  
  **/
+ 
     "fields": [
+/********************************************************************************
+		GEOFIELD
+********************************************************************************/
     	{
     		type: "esriFieldTypeOID", 
     		alias: "OBJECTID", 
@@ -67,20 +71,23 @@ define({
 	    	visible: false
 	    	
     	},
+/********************************************************************************
+		PERSONAL INFORMATION
+********************************************************************************/
     	{
 	    	alias: "Vem är du?",
 	    	domain: {
 	    		codedValues: [
 		    		{
-		    			code: "1",
+		    			code: "Man",
 		    			name: "Man"
 		    		},
 		    		{
-		    			code: "2",
+		    			code: "Kvinna",
 		    			name: "Kvinna"
 					}
 				],
-	    		name: "UseCase",
+	    		name: "Gender",
 	    		type: "codedValue"
 	    	},
 	    	editable: true,
@@ -89,7 +96,8 @@ define({
 	    	nullable: false,
 	    	tooltip: "Kön",
 	    	type: "esriFieldTypeString",
-	    	visible: true
+	    	visible: true,
+	    	typeField: true
     	},
     	{
     		alias: "Ålder",
@@ -132,14 +140,14 @@ define({
     					name: "86- år"
     				}
     			],
-    			name: "UseCase",
+    			name: "Age",
     			type: "codedValue"
     		},
     		editable: true,
     		length: 10,
     		name: "Age",
     		nullable: false,
-    		tooltip: "Kön",
+    		tooltip: "Ålder",
     		type: "esriFieldTypeString",
     		visible: true
     	},
@@ -207,40 +215,55 @@ define({
     		nullable: true,
     		tooltip: "Beskrivning för besök eller jobb",
     		type: "esriFieldTypeString",
-    		visible: false,
+    		visible: true,
     		displayType: "textarea",
     		fieldDescription: ""
     	},
+    	{
+    		alias: "Om du vill kan du lämna din adress.",
+    		editable: true,
+    		length: 50,
+    		name: "Lamna_Bostad_Adress",
+    		nullable: true,
+    		tooltip: "Bostad adress",
+    		type: "esriFieldTypeString",
+    		visible: true,
+    		fieldDescription: ""
+    	},
+    	
+/********************************************************************************
+			TRANSPORT WORKING
+********************************************************************************/
     	{
     		alias: "Vad fungerar bra i trafikmiljön?",
     		domain: {
     			codedValues: [
     	    		{
-    	    			code: "1",
+    	    			code: "Walk",
     	    			name: "Jag går"
     	    		},
     	    		{
-    	    			code: "2",
+    	    			code: "Bicycle",
     	    			name: "Jag cyklar"
     				},
     				{
-    					code: "3",
+    					code: "Moped",
     					name: "Jag kör moped"
     				},
     				{
-    					code: "4",
+    					code: "Bil",
     					name: "Jag kör bil"
     				},
     				{
-    					code: "5",
+    					code: "Bus",
     					name: "Jag åker buss"
     				},
     				{
-    					code: "6",
+    					code: "Friend",
     					name: "Jag leker med  mina kompisar"
     				},
     				{
-    					code: "7",
+    					code: "Other",
     					name: "Annat"
     				}
     			],
@@ -253,38 +276,53 @@ define({
     		nullable: false,
     		tooltip: "Kön",
     		type: "esriFieldTypeString",
-    		visible: false
+    		visible: true
     	},
+//    	{
+//    		alias: "Annat fungerar bra beskriv.",
+//    		editable: true,
+//    		length: 50,
+//    		name: "This_is_working_others_desc",
+//    		nullable: true,
+//    		tooltip: "Beskriv fungerar bra.",
+//    		type: "esriFieldTypeString",
+//    		visible: true,
+//    		displayType: "textarea",
+//    		fieldDescription: ""
+//    	},
+/********************************************************************************
+			TRANSPORT NOT WORKING
+********************************************************************************/
     	{
     		alias: "Vad fungerar inte i trafikmiljön?",
     		domain: {
     			codedValues: [
-    	    		{
-    	    			code: "1",
-    	    			name: "Jag går"
-    	    		},
-    	    		{
-    	    			code: "2",
-    	    			name: "Jag cyklar"
+    				{
+    					code: "Walk",
+    					name: "Jag går"
     				},
     				{
-    					code: "3",
+    					code: "Bicycle",
+    					name: "Jag cyklar"
+    				},
+    				{
+    					code: "Moped",
     					name: "Jag kör moped"
     				},
     				{
-    					code: "4",
+    					code: "Bil",
     					name: "Jag kör bil"
     				},
     				{
-    					code: "5",
+    					code: "Bus",
     					name: "Jag åker buss"
     				},
     				{
-    					code: "6",
+    					code: "Friend",
     					name: "Jag leker med  mina kompisar"
     				},
     				{
-    					code: "7",
+    					code: "Other",
     					name: "Annat"
     				}
     			],
@@ -297,8 +335,22 @@ define({
     		nullable: false,
     		tooltip: "Kön",
     		type: "esriFieldTypeString",
-    		visible: false
+    		visible: true
     	}
+    	
+//    	{
+//    		alias: "Annat fungerar inte beskriv.",
+//    		editable: true,
+//    		length: 50,
+//    		name: "Not_working_others_desc",
+//    		nullable: true,
+//    		tooltip: "Beskriv fungerar inte.",
+//    		type: "esriFieldTypeString",
+//    		visible: true,
+//    		displayType: "textarea",
+//    		fieldDescription: ""
+//    	}
+    	
 //    	,
 //		{
 //			type: "esriFieldTypeString", 
@@ -371,13 +423,13 @@ define({
     "defaultMapExtent": true,
     "pushpinColor": "green",
     "enableAttachments": true,
-    "attachmentIsRequired": false,
+    "attachmentIsRequired": true,
     "attachmentLabel": "",
     "attachmentHelpText": "",
     "showLayer":true,
     "locationSearchOptions": {
         "enableMyLocation": true,
-        "enableSearch": true,
+        "enableSearch": true,        
         "enableLatLng": true,
         "enableUSNG": false,
         "enableMGRS": false,

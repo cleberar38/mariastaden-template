@@ -77,6 +77,7 @@ define([
             this.locationSearchOption = {
                 "enableMyLocation": true,
                 "enableSearch": true,
+                "enableWorking": true,
                 "enableLatLng": true,
                 "enableUSNG": false,
                 "enableMGRS": false,
@@ -140,7 +141,7 @@ define([
             }));
 
             $('#saveButton').on('click', lang.hitch(this, function () {
-                this._updateItem(false);
+                this._updateItem(true);
             }));
 
             $('#done').on('click', lang.hitch(this, function () {

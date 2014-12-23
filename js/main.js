@@ -2358,6 +2358,7 @@ define([
                 this.config.locationSearchOptions = {
                     "enableMyLocation": true,
                     "enableSearch": true,
+                    "enableWorking": true,
                     "enableLatLng": true,
                     "enableUSNG": false,
                     "enableMGRS": false,
